@@ -11,10 +11,11 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class CalculadoraPage {
 	
+	private static final String ID_SUBTRACAO = "com.android.calculator2:id/op_sub";
 	public AndroidDriver driver;
 	public DesiredCapabilities desiredCapabilities;
-	public final String ID_BOTAO_2 = "com.android.calculator2:id/digit_2";
-	public final String ID_BTN_PLUS = "com.android.calculator2:id/op_add";
+	public static final String ID_PADRAO = "com.android.calculator2:id/digit_";
+	public static final String ID_BTN_PLUS = "com.android.calculator2:id/op_add";
 
 	
 	public CalculadoraPage() throws MalformedURLException {
@@ -33,8 +34,8 @@ public class CalculadoraPage {
 	}
 	
 
-	public void clicarBtn2Calculadora() {
-		this.clicarBtnCalculadoraByID(ID_BOTAO_2);
+	public void clicarBtnNumCalculadora(String num) {
+		this.clicarBtnCalculadoraByID(ID_PADRAO + num);
 	}	
 	
 	public MobileElement retornaElementoCalculadoraByID(String locator){
@@ -42,7 +43,6 @@ public class CalculadoraPage {
 		return element;
 	}
 	
-
 	public void encerraSessao() {
 		// TODO Auto-generated method stub
 		this.driver.quit();
@@ -58,6 +58,10 @@ public class CalculadoraPage {
 	
 	public String retornaResultadoString() {
 		return this.retornaTextoElementoByID("com.android.calculator2:id/result");
+	}
+	public void clickBtnMinusCalculadora() {
+		// TODO Auto-generated method stub
+		this.driver.findElementById(ID_SUBTRACAO).click();
 	}
 	
 }
