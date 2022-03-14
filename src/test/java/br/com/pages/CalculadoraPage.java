@@ -4,21 +4,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebElement;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 public class CalculadoraPage {
-	
-	private static final String ID_SUBTRACAO = "com.android.calculator2:id/op_sub";
-	public AndroidDriver driver;
-	public DesiredCapabilities desiredCapabilities;
-	public static final String ID_PADRAO = "com.android.calculator2:id/digit_";
-	public static final String ID_BTN_PLUS = "com.android.calculator2:id/op_add";
 
-	
+	private AndroidDriver<MobileElement> driver;
+	private DesiredCapabilities desiredCapabilities;
+	private static final String ID_SUBTRACAO = "com.android.calculator2:id/op_sub";
+	private static final String ID_PADRAO = "com.android.calculator2:id/digit_";
+	private static final String ID_BTN_PLUS = "com.android.calculator2:id/op_add";
+	private static final String ID_RESULTADO = "com.android.calculator2:id/result";
+	private static final String ID_DIVISAO = "com.android.calculator2:id/op_div";
+	private static final String ID_BTN_IGUAL = "com.android.calculator2:id/eq";
+
 	public CalculadoraPage() throws MalformedURLException {
+		//Setup
 		desiredCapabilities = new DesiredCapabilities();
 		desiredCapabilities.setCapability("appium:platformName", "Android");
 		desiredCapabilities.setCapability("appium:deviceName", "emulator");
@@ -27,41 +29,54 @@ public class CalculadoraPage {
 		desiredCapabilities.setCapability("appium:appActivity", "com.android.calculator2.Calculator");
 		desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
 		desiredCapabilities.setCapability("appium:connectHardwareKeyboard", true);
-		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
+		driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
 	}
+
 	public void clicarBtnCalculadoraByID(String locator) {
-		this.retornaElementoCalculadoraByID(locator).click();	    
+		this.retornaElementoCalculadoraByID(locator).click();
 	}
-	
 
 	public void clicarBtnNumCalculadora(String num) {
 		this.clicarBtnCalculadoraByID(ID_PADRAO + num);
-	}	
-	
-	public MobileElement retornaElementoCalculadoraByID(String locator){
+	}
+
+	public MobileElement retornaElementoCalculadoraByID(String locator) {
 		MobileElement element = (MobileElement) this.driver.findElementById(locator);
 		return element;
 	}
-	
+
 	public void encerraSessao() {
 		// TODO Auto-generated method stub
 		this.driver.quit();
 	}
+
 	public void clicarBtnPlusCalculadora() {
 		// TODO Auto-generated method stub
 		this.clicarBtnCalculadoraByID(ID_BTN_PLUS);
 	}
-	
+
 	public String retornaTextoElementoByID(String locator) {
-		return driver.findElementById(locator).getText();	
+		return driver.findElementById(locator).getText();
 	}
-	
+
 	public String retornaResultadoString() {
-		return this.retornaTextoElementoByID("com.android.calculator2:id/result");
+		return this.retornaTextoElementoByID(ID_RESULTADO);
 	}
+
 	public void clickBtnMinusCalculadora() {
 		// TODO Auto-generated method stub
 		this.driver.findElementById(ID_SUBTRACAO).click();
 	}
-	
+
+	public void clickBtnDivCalculadora() {
+		// TODO Auto-generated method stub
+		this.retornaElementoCalculadoraByID(ID_DIVISAO).click();
+	}
+
+	public void clicarBtnIgualCalculadora() {
+//		this.clicarBtnNumCalculadora(ID_PADRAO + "eq"); 
+		this.driver.findElementById(ID_BTN_IGUAL).click();
+		
+	}
+
 }

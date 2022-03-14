@@ -2,6 +2,8 @@ package br.com.teste;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -46,6 +48,21 @@ public class Teste implements StartAndTearDown {
 		page.clicarBtnNumCalculadora("4");
 		
 		Assert.assertEquals("1", page.retornaResultadoString());
+	}
+	
+	@Test
+	public void TesteDiviPorZeroCalculadora() {
+//		Random random = new Random();
+//		int numero = random.nextInt();
+//		String numeroRandom = "";
+//		if(numero != 0) {
+//			numeroRandom = String.valueOf(numero);
+//		}
+		page.clicarBtnNumCalculadora("3");
+		page.clickBtnDivCalculadora();
+		page.clicarBtnNumCalculadora("0");
+		page.clicarBtnIgualCalculadora();
+		Assert.assertEquals("Can't divide by 0", page.retornaResultadoString());
 	}
 
 
