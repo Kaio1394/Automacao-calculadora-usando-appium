@@ -1,22 +1,17 @@
 package br.com.teste;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Random;
-
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import br.com.pages.CalculadoraPage;
+import br.com.util.MASSADADOS;
 import br.com.util.StartAndTearDown;
 
-public class Teste implements StartAndTearDown {
+public class CalculadoraTeste implements StartAndTearDown {
 	
 	CalculadoraPage page;	
 	
@@ -62,7 +57,7 @@ public class Teste implements StartAndTearDown {
 		page.clickBtnDivCalculadora();
 		page.clicarBtnNumCalculadora("0");
 		page.clicarBtnIgualCalculadora();
-		Assert.assertEquals("Can't divide by 0", page.retornaResultadoString());
+		Assert.assertEquals(MASSADADOS.MENSAGEM_ERRO_DIV_ZERO, page.retornaResultadoString());
 	}
 
 

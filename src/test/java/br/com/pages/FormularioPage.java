@@ -1,25 +1,29 @@
 package br.com.pages;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import br.com.util.LOCATOR;
+import br.com.util.LerJSON;
+import br.com.util.MASSADADOS;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
-public class FormularioPage {
-
-	private static final String CLASS_NAME_EDIT_TEXT = "android.widget.EditText";
+public class FormularioPage{
+	LerJSON json;
 	private AndroidDriver<MobileElement> driver;
 	private DesiredCapabilities desiredCapabilities;
 
-	private static final String CLASS_NAME_FORMULARIO = "android.widget.TextView";
-	private static final String CAMPO_NOME = "Kaio";
+	
 
 	public FormularioPage() {
 		try {
@@ -63,21 +67,21 @@ public class FormularioPage {
 	}
 
 
-	public void preencherCampoTextoByClassName(String id, String texto, boolean clear) {
+	public void preencherCampoTextoByClassName(String className, String texto, boolean clear) {
 		if (clear == false) {
-			this.driver.findElement(By.className(id)).sendKeys(texto);
+			this.driver.findElement(By.className(className)).sendKeys(texto);
 		} else {
-			this.driver.findElement(By.className(id)).clear();
-			this.driver.findElement(By.className(id)).sendKeys(texto);
+			this.driver.findElement(By.className(className)).clear();
+			this.driver.findElement(By.className(className)).sendKeys(texto);
 		}
 	}
 
-	public void preencherCampoNome() {
-		this.preencherCampoTextoByClassName(CLASS_NAME_EDIT_TEXT, CAMPO_NOME, false);
+	public void preencherCampoNome(){
+		this.preencherCampoTextoByClassName(LOCATOR.CLASS_NAME_EDIT_TEXT, MASSADADOS.CAMPO_NOME, false);
 	}
 
 	public void clickTelaFormulario() {
-		List<MobileElement> elementos = this.driver.findElements(By.className(CLASS_NAME_FORMULARIO));
+		List<MobileElement> elementos = this.driver.findElements(By.className(LOCATOR.CLASS_NAME_FORMULARIO));
 		elementos.get(1).click();
 	}
 

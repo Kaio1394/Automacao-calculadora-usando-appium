@@ -5,6 +5,7 @@ import java.net.URL;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import br.com.util.LOCATOR;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -12,12 +13,6 @@ public class CalculadoraPage {
 
 	private AndroidDriver<MobileElement> driver;
 	private DesiredCapabilities desiredCapabilities;
-	private static final String ID_SUBTRACAO = "com.android.calculator2:id/op_sub";
-	private static final String ID_PADRAO = "com.android.calculator2:id/digit_";
-	private static final String ID_BTN_PLUS = "com.android.calculator2:id/op_add";
-	private static final String ID_RESULTADO = "com.android.calculator2:id/result";
-	private static final String ID_DIVISAO = "com.android.calculator2:id/op_div";
-	private static final String ID_BTN_IGUAL = "com.android.calculator2:id/eq";
 
 	public CalculadoraPage() throws MalformedURLException {
 		//Setup
@@ -37,7 +32,7 @@ public class CalculadoraPage {
 	}
 
 	public void clicarBtnNumCalculadora(String num) {
-		this.clicarBtnCalculadoraByID(ID_PADRAO + num);
+		this.clicarBtnCalculadoraByID(LOCATOR.ID_PADRAO + num);
 	}
 
 	public MobileElement retornaElementoCalculadoraByID(String locator) {
@@ -52,7 +47,7 @@ public class CalculadoraPage {
 
 	public void clicarBtnPlusCalculadora() {
 		// TODO Auto-generated method stub
-		this.clicarBtnCalculadoraByID(ID_BTN_PLUS);
+		this.clicarBtnCalculadoraByID(LOCATOR.ID_BTN_PLUS);
 	}
 
 	public String retornaTextoElementoByID(String locator) {
@@ -60,22 +55,22 @@ public class CalculadoraPage {
 	}
 
 	public String retornaResultadoString() {
-		return this.retornaTextoElementoByID(ID_RESULTADO);
+		return this.retornaTextoElementoByID(LOCATOR.ID_RESULTADO);
 	}
 
 	public void clickBtnMinusCalculadora() {
 		// TODO Auto-generated method stub
-		this.driver.findElementById(ID_SUBTRACAO).click();
+		this.driver.findElementById(LOCATOR.ID_SUBTRACAO).click();
 	}
 
 	public void clickBtnDivCalculadora() {
 		// TODO Auto-generated method stub
-		this.retornaElementoCalculadoraByID(ID_DIVISAO).click();
+		this.retornaElementoCalculadoraByID(LOCATOR.ID_DIVISAO).click();
 	}
 
 	public void clicarBtnIgualCalculadora() {
 //		this.clicarBtnNumCalculadora(ID_PADRAO + "eq"); 
-		this.driver.findElementById(ID_BTN_IGUAL).click();
+		this.driver.findElementById(LOCATOR.ID_BTN_IGUAL).click();
 		
 	}
 
