@@ -1,0 +1,8 @@
+{
+	"massa": [
+			{
+				"CAMPO_NOME":  "Kaio",
+				"MENSAGEM_ERRO_DIV_ZERO":  "Can't divide by 0"
+			}
+		]
+}
