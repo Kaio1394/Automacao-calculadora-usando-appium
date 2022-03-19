@@ -3,6 +3,7 @@ package br.com.pages;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -115,7 +116,7 @@ public class FormularioPage{
 		return this.driver.findElement(By.id(id));
 	}
 	
-	private MobileElement retornaElementoByXPath(String xpath) {
+	public MobileElement retornaElementoByXPath(String xpath) {
 		// TODO Auto-generated method stub
 		return this.driver.findElement(By.xpath(xpath));
 	}
@@ -137,4 +138,20 @@ public class FormularioPage{
 			return false;
 		}
 	}
+
+	public String[] retornaListaTextoValidacao() {
+		// TODO Auto-generated method stub
+		String txtNome = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Nome: Kaio']").getText();
+		String txtConsole = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Console: ps4']").getText();
+		String txtSlider = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Slider: 25']").getText();
+		String txtSwitch = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Switch: On']").getText();
+		String txtCheckBox = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Checkbox: Marcado']").getText();
+		String txtData = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Data: 01/01/2000']").getText();
+		String txtHora = this.retornaElementoByXPath("//android.widget.TextView[@text = 'Hora: 06:00']").getText();
+		
+		return new String[] {txtNome, txtConsole, txtSlider, txtSwitch, 
+				txtCheckBox, txtData, txtHora};
+	}
+	
+
 }

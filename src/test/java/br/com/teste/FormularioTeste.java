@@ -47,7 +47,7 @@ public class FormularioTeste {
 	}
 	
 	@Test
-	public void deveRealizarCadastroComSucesso() {
+	public void deveRealizarCadastroComSucesso() throws InterruptedException {
 		page.clickTelaFormulario();
 		page.preencherCampoNome();
 		page.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);		
@@ -55,5 +55,9 @@ public class FormularioTeste {
 		
 		page.clicarBtnSalvar(true);
 		
+		Thread.sleep(2000);
+		Assert.assertArrayEquals(MASSADADOS.LISTA_VALIDACAO, 
+				page.retornaListaTextoValidacao());
+
 	}
 }
