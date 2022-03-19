@@ -7,11 +7,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 
-public class LerJSON {
+public class JSON {
 	private Object obj;
 	private JSONObject js;
 	
-	public LerJSON(String path) throws IOException, ParseException{
+	public JSON(String path) throws IOException, ParseException{
 		obj = new JSONParser().parse(new FileReader(path));
 		js = (JSONObject) obj;				
 	}

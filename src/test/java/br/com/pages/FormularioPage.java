@@ -12,14 +12,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import br.com.util.LOCATOR;
-import br.com.util.LerJSON;
+import br.com.util.JSON;
 import br.com.util.MASSADADOS;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class FormularioPage{
-	LerJSON json;
+	JSON json;
 	private AndroidDriver<MobileElement> driver;
 	private DesiredCapabilities desiredCapabilities;
 
@@ -83,6 +83,16 @@ public class FormularioPage{
 	public void clickTelaFormulario() {
 		List<MobileElement> elementos = this.driver.findElements(By.className(LOCATOR.CLASS_NAME_FORMULARIO));
 		elementos.get(1).click();
+	}
+
+	public String retornaTextoNome() {
+		// TODO Auto-generated method stub
+		return this.retornaElementoByClasName(LOCATOR.CLASS_NAME_EDIT_TEXT);
+	}
+
+	private String retornaElementoByClasName(String className) {
+		// TODO Auto-generated method stub
+		return this.driver.findElement(By.className(className)).getText();
 	}
 
 	
