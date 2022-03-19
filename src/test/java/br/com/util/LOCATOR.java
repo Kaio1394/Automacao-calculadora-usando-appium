@@ -9,4 +9,7 @@ public abstract class LOCATOR {
 	public static final String ID_RESULTADO = "com.android.calculator2:id/result";
 	public static final String ID_DIVISAO = "com.android.calculator2:id/op_div";
 	public static final String ID_BTN_IGUAL = "com.android.calculator2:id/eq";
+	public static final String XPATH_CAMPO_CONSOLE = "//android.widget.Spinner/android.widget.TextView";
+	public static final String ACESS_ID_CHECK_BOX = "check";
+	public static final String XPATH_BTN_SALVAR = "//android.widget.TextView[@text='SALVAR']";
 }

@@ -1,29 +1,25 @@
 package br.com.pages;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import br.com.util.LOCATOR;
-import br.com.util.JSON;
 import br.com.util.MASSADADOS;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class FormularioPage{
-	JSON json;
+	
 	private AndroidDriver<MobileElement> driver;
 	private DesiredCapabilities desiredCapabilities;
-
-	
 
 	public FormularioPage() {
 		try {
@@ -45,16 +41,17 @@ public class FormularioPage{
 	}
 
 	private void esperaPorXSegundos(int time) {
-		// TODO Auto-generated method stub
 		this.driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 	}
 
-	public void fecharApp(boolean fechar) {
+	public boolean fecharApp(boolean fechar) {
 		if (fechar == true) {
 			if (driver != null) {
 				driver.quit();
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void preencherCampoTextoById(String id, String texto, boolean clear) {
@@ -94,7 +91,50 @@ public class FormularioPage{
 		// TODO Auto-generated method stub
 		return this.driver.findElement(By.className(className)).getText();
 	}
-
 	
+	public MobileElement retornaElementoByAcessibilityId(String acessId) {
+		return this.driver.findElement(MobileBy.AccessibilityId(acessId));		
+	}
+	
+	public void clickComboBoxByAcessibilityId(String acessId) {
+		// TODO Auto-generated method stub
+		this.retornaElementoByAcessibilityId(acessId).click();
+	}
+	
+	public void clickComboBoxConsole(String console) {
+		this.clickComboBoxByAcessibilityId(MASSADADOS.ACESS_ID_CONSOLE);
+		this.driver.findElement(By.xpath("//android.widget.CheckedTextView[@text='"+ console +"']")).click();
+	}
+	
+	public String retornaTextoDoConsole() {
+		return this.retornaElementoByXPath(LOCATOR.XPATH_CAMPO_CONSOLE).getText();
+	}
 
+	private MobileElement retornaElementoById(String id) {
+		// TODO Auto-generated method stub
+		return this.driver.findElement(By.id(id));
+	}
+	
+	private MobileElement retornaElementoByXPath(String xpath) {
+		// TODO Auto-generated method stub
+		return this.driver.findElement(By.xpath(xpath));
+	}
+
+	public void clickCheckBox() {
+		// TODO Auto-generated method stub
+		this.retornaElementoByAcessibilityId(LOCATOR.ACESS_ID_CHECK_BOX).click();
+	}
+	
+	public boolean retornaStatusCheckBox() {
+		return retornaElementoByAcessibilityId(LOCATOR.ACESS_ID_CHECK_BOX).isEnabled();
+	}
+	
+	public boolean clicarBtnSalvar(boolean condicao) {
+		if(condicao) {
+			this.retornaElementoByXPath(LOCATOR.XPATH_BTN_SALVAR).click();
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
