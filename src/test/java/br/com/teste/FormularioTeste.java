@@ -18,6 +18,7 @@ public class FormularioTeste {
 	@Before
 	public void before() {
 		page = new FormularioPage();
+		page.clickTelaFormulario();
 	}
 	
 	@After
@@ -26,29 +27,25 @@ public class FormularioTeste {
 	}
 	
 	@Test
-	public void devePreencherCampoTexto(){
-		page.clickTelaFormulario();
+	public void devePreencherCampoTexto(){		
 		page.preencherCampoNome();
 		Assert.assertEquals(MASSADADOS.CAMPO_NOME, page.retornaTextoNome());
 	}
 	
 	@Test
 	public void testandoCOmboBOx() {
-		page.clickTelaFormulario();
 		page.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);
 		Assert.assertEquals(MASSADADOS.CONSOLE_NOME_PS4, page.retornaTextoDoConsole());
 	}
 	
 	@Test
 	public void deveInteragirComCheckBox() {
-		page.clickTelaFormulario();
 		page.clickCheckBox();
 		Assert.assertTrue(page.retornaStatusCheckBox());
 	}
 	
 	@Test
 	public void deveRealizarCadastroComSucesso() throws InterruptedException {
-		page.clickTelaFormulario();
 		page.preencherCampoNome();
 		page.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);		
 		page.clickCheckBox();

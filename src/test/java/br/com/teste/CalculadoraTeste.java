@@ -24,7 +24,7 @@ public class CalculadoraTeste implements StartAndTearDown {
 	
 	@After
 	public void tearDown() {
-		page.encerraSessao();
+		page.fecharApp(true);
 	}
 	
 	@Test
