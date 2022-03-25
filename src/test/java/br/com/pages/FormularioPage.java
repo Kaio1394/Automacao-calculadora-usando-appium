@@ -1,5 +1,6 @@
 package br.com.pages;
 import br.com.util.LOCATOR;
+import br.com.util.MASSADADOS;
 
 
 public class FormularioPage extends PageObject{
@@ -17,7 +18,6 @@ public class FormularioPage extends PageObject{
 	}
 
 	public void clickComboBoxByAcessibilityId(String acessId) {
-		// TODO Auto-generated method stub
 		this.retornaElementoByAcessibilityId(acessId).click();
 	}
 	
@@ -26,7 +26,6 @@ public class FormularioPage extends PageObject{
 	}
 
 	public void clickCheckBox() {
-		// TODO Auto-generated method stub
 		this.retornaElementoByAcessibilityId(LOCATOR.ACESS_ID_CHECK_BOX).click();
 	}
 	
@@ -55,6 +54,10 @@ public class FormularioPage extends PageObject{
 		
 		return new String[] {txtNome, txtConsole, txtSlider, txtSwitch, 
 				txtCheckBox, txtData, txtHora};
+	}
+	
+	public void preencherCampoNome() {
+		this.preencherCampoTextoByClassName(LOCATOR.CLASS_NAME_EDIT_TEXT, MASSADADOS.CAMPO_NOME, false);
 	}
 	
 

@@ -1,6 +1,5 @@
 package br.com.teste;
 
-import java.net.MalformedURLException;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -9,14 +8,13 @@ import org.junit.Test;
 
 import br.com.pages.CalculadoraPage;
 import br.com.util.MASSADADOS;
-import br.com.util.StartAndTearDown;
 
-public class CalculadoraTeste implements StartAndTearDown {
+public class CalculadoraTeste {
 	
 	CalculadoraPage page;	
 	
 	@Before
-	public void before() throws MalformedURLException {
+	public void before(){
 		// TODO Auto-generated method stub
 		page = new CalculadoraPage();
 		

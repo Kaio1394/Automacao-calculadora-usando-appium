@@ -13,11 +13,8 @@ public class DriverFactory {
 	private AndroidDriver<MobileElement> driver;
 	private DesiredCapabilities desiredCapabilities;
 
-	public DriverFactory(
-			AndroidDriver<MobileElement> driver, 
-			String appPackage, 
-			String appActivity) {
-		if(driver == null) {
+	public DriverFactory(AndroidDriver<MobileElement> driver, String appPackage, String appActivity) {
+		if (driver == null) {
 			try {
 //				this.desiredCapabilities = new DesiredCapabilities();
 //				this.desiredCapabilities.setCapability("appium:platformName", "Android");
@@ -28,7 +25,7 @@ public class DriverFactory {
 //				this.driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),
 //						desiredCapabilities);
 //				this.esperaPorXSegundos(10);
-				
+
 				desiredCapabilities = new DesiredCapabilities();
 				desiredCapabilities.setCapability("appium:platformName", "Android");
 				desiredCapabilities.setCapability("appium:deviceName", "emulator");
@@ -37,14 +34,15 @@ public class DriverFactory {
 				desiredCapabilities.setCapability("appium:appActivity", appActivity);
 				desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
 				desiredCapabilities.setCapability("appium:connectHardwareKeyboard", true);
-				this.driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), 
+				this.driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),
 						desiredCapabilities);
 				this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();		
+				e.printStackTrace();
 			}
+		}else {
+			this.driver = driver;
 		}
 	}
 
@@ -52,6 +50,9 @@ public class DriverFactory {
 		return driver;
 	}
 
+	public void setDriver(AndroidDriver<MobileElement> driver) {
+		this.driver = driver;
+	}
 
 	
 
