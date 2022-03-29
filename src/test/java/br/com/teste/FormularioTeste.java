@@ -5,56 +5,54 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 import br.com.pages.FormularioPage;
 import br.com.util.MASSADADOS;
 
-
 public class FormularioTeste {
 
-	
-	private FormularioPage page;
+	private FormularioPage formularioPage;
 
 	@Before
 	public void before() {
-		page = new FormularioPage();
-		page.clickTelaFormulario();
+		formularioPage = new FormularioPage();
+		formularioPage.clickTelaFormulario();
 	}
-	
+
 	@After
 	public void tearDown() {
-		page.fecharApp(true);
+		formularioPage.takeScreenShot();
+		formularioPage.fecharApp(true);
+		//formularioPage.restarAppFormulario();
 	}
-	
+
 	@Test
-	public void devePreencherCampoTexto(){		
-		page.preencherCampoNome();
-		Assert.assertEquals(MASSADADOS.CAMPO_NOME, page.retornaTextoNome());
+	public void devePreencherCampoTexto() {
+		formularioPage.preencherCampoNome();
+		Assert.assertEquals(MASSADADOS.CAMPO_NOME, formularioPage.retornaTextoNome());
 	}
-	
+
 	@Test
-	public void testandoCOmboBOx() {
-		page.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);
-		Assert.assertEquals(MASSADADOS.CONSOLE_NOME_PS4, page.retornaTextoDoConsole());
+	public void testandoComboBox() {
+		formularioPage.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);
+		Assert.assertEquals(MASSADADOS.CONSOLE_NOME_PS4, formularioPage.retornaTextoDoConsole());
 	}
-	
+
 	@Test
 	public void deveInteragirComCheckBox() {
-		page.clickCheckBox();
-		Assert.assertTrue(page.retornaStatusCheckBox());
+		formularioPage.clickCheckBox();
+		Assert.assertTrue(formularioPage.retornaStatusCheckBox());
 	}
-	
+
 	@Test
 	public void deveRealizarCadastroComSucesso() throws InterruptedException {
-		page.preencherCampoNome();
-		page.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);		
-		page.clickCheckBox();
-		
-		page.clicarBtnSalvar(true);
-		
+		formularioPage.preencherCampoNome();
+		formularioPage.clickComboBoxConsole(MASSADADOS.CONSOLE_NOME_PS4);
+		formularioPage.clickCheckBox();
+
+		formularioPage.clicarBtnSalvar(true);
+
 		Thread.sleep(2000);
-		Assert.assertArrayEquals(MASSADADOS.LISTA_VALIDACAO, 
-				page.retornaListaTextoValidacao());
+		Assert.assertArrayEquals(MASSADADOS.LISTA_VALIDACAO, formularioPage.retornaListaTextoValidacao());
 
 	}
 }

@@ -1,9 +1,14 @@
 package br.com.pages;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import br.com.factory.DriverFactory;
 import br.com.util.LOCATOR;
@@ -55,8 +60,6 @@ public class PageObject {
 		}
 	}
 
-	
-
 	public String retornaElementoByClasName(String className) {
 		// TODO Auto-generated method stub
 		return this.factory.getDriver().findElement(By.className(className)).getText();
@@ -106,4 +109,19 @@ public class PageObject {
 		// TODO Auto-generated method stub
 		this.factory.getDriver().findElementById(LOCATOR.ID_SUBTRACAO).click();
 	}
+	
+	public void restartApp() {
+		// TODO Auto-generated method stub
+		this.factory.getDriver().resetApp();
+	}
+	
+	public void takeScreenShot() {
+		File screenshotAs = ((TakesScreenshot) this.factory.getDriver()).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(screenshotAs, new File("target/screenshots/img.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

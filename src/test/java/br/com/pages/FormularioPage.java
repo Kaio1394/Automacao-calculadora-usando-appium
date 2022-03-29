@@ -59,6 +59,10 @@ public class FormularioPage extends PageObject{
 	public void preencherCampoNome() {
 		this.preencherCampoTextoByClassName(LOCATOR.CLASS_NAME_EDIT_TEXT, MASSADADOS.CAMPO_NOME, false);
 	}
+
+	public void restarAppFormulario() {
+		this.restartApp();
+	}
 	
 
 }
